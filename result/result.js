@@ -88,7 +88,7 @@ app.on('finish', () => {
     createResult({
       seed: randomSeed, score, log: app.button.log
     }).then(id => {
-      pushUrl(id, `￥${score}`)
+      pushUrl(id, `￥${toDelimited(score)}`)
     })
   }
   app.button.stopLog()
