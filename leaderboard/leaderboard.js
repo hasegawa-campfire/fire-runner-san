@@ -255,14 +255,12 @@ $googleAuth.addEventListener('click', async () => {
 
     const oldName = getMeName()
 
-    if (await signIn('google.com')) {
-      updateSettingsState()
-      return
-    }
+    if (await signIn('google.com')) return
 
     const newName = getMeName()
     if (oldName !== newName) {
       setUserName(newName)
+      updateSettingsState()
     }
   } finally {
     $userSettingsLoading.classList.remove('show')
