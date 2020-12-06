@@ -255,7 +255,10 @@ $googleAuth.addEventListener('click', async () => {
 
     const oldName = getMeName()
 
-    if (await signIn('google.com')) return
+    if (await signIn('google.com')) {
+      updateSettingsState()
+      return
+    }
 
     const newName = getMeName()
     if (oldName !== newName) {
