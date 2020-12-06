@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<title>FIRE RUNNER SAN</title>
+<meta name="description" content="ラン＆ジャンプで￥1,000,000を目指そう！シンプルに駆け抜けるランゲームです！" />
+<meta name="keywords" content="FIRE RUNNER SAN, ランゲーム">
+<link rel="canonical" href="https://hasegawa-campfire.github.io/fire-runner-san/">
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hasegawa-campfire.github.io/fire-runner-san/" />
+<meta property="og:title" content="FIRE RUNNER SAN" />
+<meta property="og:site_name" content="FIRE RUNNER SAN" />
+<meta property="og:description" content="ラン＆ジャンプで￥1,000,000を目指そう！シンプルに駆け抜けるランゲームです！" />
+<meta property="og:image" content="https://hasegawa-campfire.github.io/fire-runner-san/ogp.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@hsgwkt" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Chivo&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./lib/window.css">
+<link rel="stylesheet" href="./lib/loading.css">
+<link rel="stylesheet" href="./app/app.css">
+<link rel="stylesheet" href="./status/status.css">
+<link rel="stylesheet" href="./launch/launch.css">
+<link rel="stylesheet" href="./result/result.css">
+<link rel="stylesheet" href="./player/player.css">
+<link rel="stylesheet" href="./land/land.css">
+<link rel="stylesheet" href="./item/item.css">
+<link rel="stylesheet" href="./leaderboard/leaderboard.css">
+
+<script>
+  if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+    document.write('<meta name="viewport" content="width=640,user-scalable=no">')
+  } else {
+    document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0">')
+  }
+</script>
+
+<style>
+  *, ::before, ::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    display: none;
+    min-width: 640px;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-y: none;
+    font-family: "Chivo", "Noto Sans JP", sans-serif;
+    overflow-wrap: break-word;
+  }
+
+  a, button, input, textarea {
+    color: inherit;
+    font-family: inherit;
+    font-size: 100%;
+    outline: none;
+  }
+</style>
+
+<div class="app">
+  <div class="bg"></div>
+  <div class="world"></div>
+
+  <div class="status">
+    <div class="power">
+      <svg class="icon" viewBox="20 13 70 70" fill="none" stroke="currentColor" stroke-width="7">
+        <path d="M80.44,23.94c-6.85-5.84-17-4.79-23.32,1.7l-2.46,2.53-2.47-2.53c-6.27-6.49-16.47-7.54-23.32-1.7a17.94,17.94,0,0,0-1.24,26l24.19,25a3.92,3.92,0,0,0,5.66,0l24.19-25a17.93,17.93,0,0,0-1.23-26Z" />
+      </svg>
+      <div class="value">0</div>
+    </div>
+    <div class="time">
+      <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+        <path fill-rule="evenodd" d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z"/>
+      </svg>
+      <div class="exponent">0</div>
+      <div class="period">.</div>
+      <div class="fraction">00</div>
+    </div>
+    <div class="score">
+      <svg class="icon" viewBox="0 0 512 512" fill="currentColor">
+        <path d="M448 32h-80L256 253.13 144 32H64l112.37 208H128v48h73.56L216 319v17h-88v48h88v96h80v-96h88v-48h-88v-17l14.89-31H384v-48h-48.29z" />
+      </svg>
+      <div class="current">0</div>
+    </div>
+  </div>
+  <div class="status-replay">REPLAY</div>
+
+  <div class="launch default window blink" data-top="FIRE RUNNER SAN" data-bottom="PRESS ANY BUTTON"></div>
+
+  <div class="launch replay window blink" data-top="REPLAY" data-bottom="PRESS ANY BUTTON">
+    <div class="error">リプレイを再生できません</div>
+    <div class="name"></div>
+    <div class="score">
+      <svg class="icon" viewBox="0 0 512 512" fill="currentColor">
+        <path d="M448 32h-80L256 253.13 144 32H64l112.37 208H128v48h73.56L216 319v17h-88v48h88v96h80v-96h88v-48h-88v-17l14.89-31H384v-48h-48.29z" />
+      </svg>
+      <div class="value">0</div>
+    </div>
+    <div class="loading show"></div>
+  </div>
+
+  <div class="result window blink" data-top="RESULT" data-bottom="PRESS ANY BUTTON">
+    <div class="score">
+      <svg class="icon" viewBox="0 0 512 512" fill="currentColor">
+        <path d="M448 32h-80L256 253.13 144 32H64l112.37 208H128v48h73.56L216 319v17h-88v48h88v96h80v-96h88v-48h-88v-17l14.89-31H384v-48h-48.29z" />
+      </svg>
+      <div class="current">0</div>
+      <div class="slash">/</div>
+      <div class="target">0</div>
+      <div class="success">SUCCESS</div>
+    </div>
+    <div class="score-gauge"></div>
+  </div>
+</div>
+
+<div class="information">
+  <div class="howto window" data-top="CONTROLS">
+    <div class="function">
+      <div class="key">Z</div>
+      <div class="key">Space</div>
+      <div class="key small">↑</div>
+      <div class="name">ジャンプ</div>
+    </div>
+    <div class="function">
+      <div class="key">Esc</div>
+      <div class="key">Enter</div>
+      <div class="name">リセット</div>
+    </div>
+  </div>
+  <div class="reset clickable">
+    RESET
+    <svg class="icon" viewBox="0 0 512 512" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="50">
+      <path d="M320 146s24.36-12-64-12a160 160 0 10160 160" stroke-miterlimit="10"/>
+      <path stroke-linejoin="miter" d="M256 58l80 80-80 80" />
+    </svg>
+  </div>
+  <a class="share clickable" target="_blank">
+    SHARE
+    <svg class="icon" viewBox="0 0 512 512" fill="currentColor">
+      <path d="M496 109.5a201.8 201.8 0 01-56.55 15.3 97.51 97.51 0 0043.33-53.6 197.74 197.74 0 01-62.56 23.5A99.14 99.14 0 00348.31 64c-54.42 0-98.46 43.4-98.46 96.9a93.21 93.21 0 002.54 22.1 280.7 280.7 0 01-203-101.3A95.69 95.69 0 0036 130.4c0 33.6 17.53 63.3 44 80.7A97.5 97.5 0 0135.22 199v1.2c0 47 34 86.1 79 95a100.76 100.76 0 01-25.94 3.4 94.38 94.38 0 01-18.51-1.8c12.51 38.5 48.92 66.5 92.05 67.3A199.59 199.59 0 0139.5 405.6a203 203 0 01-23.5-1.4A278.68 278.68 0 00166.74 448c181.36 0 280.44-147.7 280.44-275.8 0-4.2-.11-8.4-.31-12.5A198.48 198.48 0 00496 109.5z" />
+    </svg>
+  </a>
+  <div class="sound clickable" target="_blank">
+    <svg class="icon full show" viewBox="0 0 512 512">
+      <path d="M126 192H56a8 8 0 00-8 8v112a8 8 0 008 8h69.65a15.93 15.93 0 0110.14 3.54l91.47 74.89A8 8 0 00240 392V120a8 8 0 00-12.74-6.43l-91.47 74.89A15 15 0 01126 192zM320 320c9.74-19.38 16-40.84 16-64 0-23.48-6-44.42-16-64M368 368c19.48-33.92 32-64.06 32-112s-12-77.74-32-112M416 416c30-46 48-91.43 48-160s-18-113-48-160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+    </svg>
+    <svg class="icon mute" viewBox="0 0 512 512">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M416 432L64 80" />
+      <path fill="currentColor" d="M224 136.92v33.8a4 4 0 001.17 2.82l24 24a4 4 0 006.83-2.82v-74.15a24.53 24.53 0 00-12.67-21.72 23.91 23.91 0 00-25.55 1.83 8.27 8.27 0 00-.66.51l-31.94 26.15a4 4 0 00-.29 5.92l17.05 17.06a4 4 0 005.37.26zM224 375.08l-78.07-63.92a32 32 0 00-20.28-7.16H64v-96h50.72a4 4 0 002.82-6.83l-24-24a4 4 0 00-2.82-1.17H56a24 24 0 00-24 24v112a24 24 0 0024 24h69.76l91.36 74.8a8.27 8.27 0 00.66.51 23.93 23.93 0 0025.85 1.69A24.49 24.49 0 00256 391.45v-50.17a4 4 0 00-1.17-2.82l-24-24a4 4 0 00-6.83 2.82zM125.82 336zM352 256c0-24.56-5.81-47.88-17.75-71.27a16 16 0 00-28.5 14.54C315.34 218.06 320 236.62 320 256q0 4-.31 8.13a8 8 0 002.32 6.25l19.66 19.67a4 4 0 006.75-2A146.89 146.89 0 00352 256zM416 256c0-51.19-13.08-83.89-34.18-120.06a16 16 0 00-27.64 16.12C373.07 184.44 384 211.83 384 256c0 23.83-3.29 42.88-9.37 60.65a8 8 0 001.9 8.26l16.77 16.76a4 4 0 006.52-1.27C410.09 315.88 416 289.91 416 256z" />
+      <path fill="currentColor" d="M480 256c0-74.26-20.19-121.11-50.51-168.61a16 16 0 10-27 17.22C429.82 147.38 448 189.5 448 256c0 47.45-8.9 82.12-23.59 113a4 4 0 00.77 4.55L443 391.39a4 4 0 006.4-1C470.88 348.22 480 307 480 256z" />
+    </svg>
+  </div>
+</div>
+
+<div class="leaderboard window" data-top="FIRE ECONOMIC ZONE" data-bottom="AND YOU">
+  <div class="user clickable">
+    <svg class="icon default active" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" fill-rule="evenodd" />
+    </svg>
+    <svg class="icon google" viewBox="0 0 512 512" fill="currentColor">
+      <path d="M473.16 221.48l-2.26-9.59H262.46v88.22H387c-12.93 61.4-72.93 93.72-121.94 93.72-35.66 0-73.25-15-98.13-39.11a140.08 140.08 0 01-41.8-98.88c0-37.16 16.7-74.33 41-98.78s61-38.13 97.49-38.13c41.79 0 71.74 22.19 82.94 32.31l62.69-62.36C390.86 72.72 340.34 32 261.6 32c-60.75 0-119 23.27-161.58 65.71C58 139.5 36.25 199.93 36.25 256s20.58 113.48 61.3 155.6c43.51 44.92 105.13 68.4 168.58 68.4 57.73 0 112.45-22.62 151.45-63.66 38.34-40.4 58.17-96.3 58.17-154.9 0-24.67-2.48-39.32-2.59-39.96z" />
+    </svg>
+  </div>
+  <div class="entry-list"></div>
+  <div class="loading show"></div>
+</div>
+
+<div class="user-settings" data-ignore-button-event>
+  <div class="modal window" data-top="USER SETTINGS">
+    <form class="form">
+      <div class="label">名前</div>
+      <input class="text" placeholder="no name" maxlength="100" spellcheck="false">
+      <button type="submit" class="apply clickable" disabled>保存</button>
+    </form>
+    <div class="external-account"></div>
+    <div class="external-auth clickable">
+      <svg class="icon" viewBox="0 0 512 512" fill="currentColor">
+        <path d="M473.16 221.48l-2.26-9.59H262.46v88.22H387c-12.93 61.4-72.93 93.72-121.94 93.72-35.66 0-73.25-15-98.13-39.11a140.08 140.08 0 01-41.8-98.88c0-37.16 16.7-74.33 41-98.78s61-38.13 97.49-38.13c41.79 0 71.74 22.19 82.94 32.31l62.69-62.36C390.86 72.72 340.34 32 261.6 32c-60.75 0-119 23.27-161.58 65.71C58 139.5 36.25 199.93 36.25 256s20.58 113.48 61.3 155.6c43.51 44.92 105.13 68.4 168.58 68.4 57.73 0 112.45-22.62 151.45-63.66 38.34-40.4 58.17-96.3 58.17-154.9 0-24.67-2.48-39.32-2.59-39.96z" />
+      </svg>
+      <div class="label">Sign in with Google</div>
+    </div>
+    <div class="close clickable">閉じる</div>
+    <div class="loading fill"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+
+<script type="module">
+  import * as app from './app/app.js'
+  import * as status from './status/status.js'
+  import * as launch from './launch/launch.js'
+  import * as result from './result/result.js'
+  import * as player from './player/player.js'
+  import * as item from './item/item.js'
+  import * as land from './land/land.js'
+  import * as god from './player/god.js'
+  import './leaderboard/leaderboard.js'
+
+  app.setInit(() => {
+    status.init()
+    launch.init()
+    result.init()
+    player.init()
+    item.init()
+    land.init()
+    god.init()
+  })
+
+  app.setUpdate(() => {
+    result.update()
+    launch.update()
+    player.updateBefore()
+    land.update()
+    item.update()
+    player.update()
+    status.update()
+    god.update()
+  })
+</script>

@@ -1,0 +1,90 @@
+.result {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 50px);
+  transform: translate(-50%, -50%);
+  padding: 40px 30px;
+  width: 320px;
+  font-size: 12px;
+  line-height: 1.2;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.2s 0s, top 0s 0.2s;
+}
+
+.result.show {
+  opacity: 1;
+  top: 50%;
+  transition: opacity 0.5s 1s, top 0.5s 1s;
+}
+
+.result .score {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  font-size: 24px;
+}
+
+.result .score .icon {
+  height: 0.6em;
+  margin-right: 0.3em;
+}
+
+.result .score .current {
+  flex: auto;
+}
+
+.result .score .slash {
+  flex: none;
+  font-size: 60%;
+  margin: 0 0.3em;
+}
+
+.result .score .target {
+  font-size: 60%;
+}
+
+.result .score .success {
+  position: absolute;
+  right: -27px;
+  bottom: 3px;
+  border-radius: 10px;
+  border: currentColor 3px solid;
+  padding: 13px 16px 10px;
+  color: var(--light-color);
+  font-size: 21px;
+  font-weight: bold;
+  background-color: #ffffff66;
+  box-shadow: 0 0 0 2px #ffffff66;
+  line-height: 1;
+  transform: rotate(-5deg) scale(1.8);
+  opacity: 0;
+}
+
+.result .score .success.show {
+  opacity: 1;
+  transform: rotate(8deg) scale(1);
+  transition: opacity 0.2s 1s ease-in, transform 0.2s 1s ease-in;
+  animation: success-blink 1s 1.5s ease-in alternate infinite;
+}
+
+.result .score-gauge {
+  overflow: hidden;
+  border-radius: 999px;
+  border: currentColor 1px solid;
+  height: 6px;
+  background-image: linear-gradient(to right, currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 0px 100%;
+  transition: background-size 0s linear;
+}
+
+@keyframes success-blink {
+  from {
+    color: var(--light-color);
+  }
+  to {
+    color: var(--theme-color);
+  }
+}

@@ -1,0 +1,57 @@
+.launch {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  text-align: center;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.launch.show {
+  opacity: 1;
+}
+
+.launch.default {
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.launch.replay {
+  line-height: 1.5;
+  min-height: 110px;
+}
+
+.launch.replay .error {
+  line-height: 50px;
+}
+
+.launch.replay .name {
+  font-size: 14px;
+}
+
+.launch.replay .score {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.launch.replay .score .icon {
+  height: 0.6em;
+  margin-right: 0.2em;
+}
+
+.launch.replay .score .current {
+  flex: auto;
+}
+
+.launch.replay .error:not(.show),
+.launch.replay .name:not(.show),
+.launch.replay .score:not(.show) {
+  display: none;
+}

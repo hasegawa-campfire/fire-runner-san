@@ -1,0 +1,29 @@
+.item {
+  position: absolute;
+  margin-left: -15px;
+  margin-top: -15px;
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  filter: var(--drop-shadow);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.item.flash {
+  animation: item-flash 0.4s ease-in;
+  fill: none;
+  stroke: var(--light-color);
+  stroke-width: 6px;
+  filter: none;
+}
+
+@keyframes item-flash {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}

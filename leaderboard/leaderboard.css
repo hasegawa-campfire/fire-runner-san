@@ -1,0 +1,273 @@
+.information {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 640px;
+  margin: 30px auto;
+  padding-left: 12px;
+  color: var(--theme-color);
+}
+
+.information .howto {
+  padding: 32px 30px;
+}
+
+.information .howto .function {
+  display: flex;
+  align-items: center;
+}
+
+.information .howto .function + .function {
+  margin-top: 8px;
+}
+
+.information .howto .key {
+  margin-right: 5px;
+  font-size: 10px;
+  line-height: 18px;
+  display: inline-block;
+  padding: 0 4px;
+  border: currentColor 1px solid;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 rgba(128, 0, 0, 0.1);
+}
+
+.information .howto .name {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.information .howto .name::before {
+  display: inline-block;
+  content: "/";
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.information .reset,
+.information .share,
+.information .sound {
+  padding: 10px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  text-shadow: var(--box-shadow);
+}
+
+.information .reset .icon,
+.information .share .icon,
+.information .sound .icon {
+  height: 2em;
+  margin-left: 1em;
+  filter: var(--drop-shadow);
+}
+
+.information .sound {
+  position: relative;
+  top: -70px;
+  right: 30px;
+}
+
+.information .sound .icon {
+  margin-left: 0;
+}
+
+.information .sound .icon:not(.show) {
+  display: none;
+}
+
+.leaderboard {
+  position: relative;
+  width: 480px;
+  min-height: 96px;
+  margin: 60px auto;
+  padding: 30px;
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--theme-color);
+}
+
+.leaderboard .user {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  padding: 10px;
+}
+
+.leaderboard .user .icon {
+  display: none;
+  height: 24px;
+}
+
+.leaderboard .user .icon.active {
+  display: block;
+}
+
+.leaderboard .entry {
+  display: flex;
+  align-items: center;
+  width: 360px;
+  margin: 0 auto;
+  padding: 0 20px 0 10px;
+}
+
+.leaderboard .entry.me {
+  color: var(--light-color);
+}
+
+.leaderboard .entry:not(:last-child) {
+  border-bottom: rgba(239, 72, 70, 0.3) 1px dashed;
+}
+
+.leaderboard .entry .name {
+  flex: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard .entry .score {
+  flex: none;
+  text-align: right;
+  margin: 0 20px;
+}
+
+.leaderboard .entry .play {
+  flex: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+  padding-left: 2px;
+  width: 36px;
+  height: 36px;
+  font-size: 12px;
+}
+
+/* .leaderboard .entry .play::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+  border: currentColor 2px solid;
+  border-radius: 50%;
+} */
+
+.user-settings {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffffee;
+  color: var(--theme-color);
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.user-settings.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.user-settings .modal {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 20px);
+  transform: translate(-50%, -50%);
+  padding: 40px 30px 10px;
+  width: 320px;
+  font-size: 12px;
+  line-height: 1.2;
+  transition: top 0s 0.3s;
+}
+
+.user-settings.show .modal {
+  top: 50%;
+  transition: top 0.3s;
+}
+
+.user-settings .form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.user-settings .form .label {
+  font-size: 10px;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.user-settings .form .text {
+  flex: auto;
+  height: 36px;
+  border: var(--theme-color) 1px solid;
+  padding: 0 10px;
+  color: #190001;
+  font-family: inherit;
+  font-size: 12px;
+  outline: none;
+  box-shadow: 2px 2px 0 rgba(128, 0, 0, 0.1) inset;
+  appearance: none;
+}
+
+.user-settings .form .text::placeholder {
+  color: rgba(128, 0, 0, 0.3);
+}
+
+.user-settings .form .apply {
+  margin-left: 10px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 20px;
+  border: currentColor 1px solid;
+  border-radius: 4px;
+  background-color: transparent;
+  appearance: none;
+  outline: none;
+}
+
+.user-settings .form .apply[disabled],
+.user-settings .external-auth.disabled {
+  pointer-events: none;
+  border-color: transparent;
+  background-color: rgba(128, 0, 0, 0.1);
+  color: #fff;
+}
+
+.user-settings .external-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto 0;
+  padding: 10px;
+  border: currentColor 1px solid;
+  border-radius: 4px;
+}
+
+.user-settings .external-auth .icon {
+  flex: none;
+  height: 1.2em;
+  margin-right: 0.5em;
+}
+
+.user-settings .external-auth .label {
+  min-width: 0;
+}
+
+.user-settings .close {
+  margin-top: 20px;
+  padding: 10px 0;
+  text-align: center;
+}

@@ -1,0 +1,45 @@
+.window {
+  position: relative;
+  padding: 30px;
+  background-color: #ffffffdd;
+  box-shadow: 0 0 1px currentColor, var(--box-shadow);
+}
+
+.window::before,
+.window::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  opacity: 0.4;
+  letter-spacing: 1em;
+  text-indent: 1em;
+  text-shadow: none;
+}
+
+.window.blink::before,
+.window.blink::after,
+.window.blink-top::before,
+.window.blink-bottom::after {
+  animation: window-blink 1s linear alternate infinite;
+}
+
+.window::before {
+  top: 0;
+  content: attr(data-top);
+}
+
+.window::after {
+  bottom: 0;
+  content: attr(data-bottom);
+}
+
+@keyframes window-blink {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0.2;
+  }
+}

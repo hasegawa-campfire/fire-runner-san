@@ -1,0 +1,67 @@
+.player {
+  position: absolute;
+  left: -15px;
+  top: -30px;
+  width: 30px;
+  height: 45px;
+  transition: color 1s;
+  z-index: 9;
+  filter: var(--drop-shadow);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.player.flash {
+  color: var(--light-color);
+  transition: none;
+}
+
+.smoke {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  animation: fadeout 0.3s linear;
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+.smoke.hover {
+  animation: fadeout-down 0.3s ease-out;
+}
+
+.after-image {
+  position: absolute;
+  margin-left: -15px;
+  margin-top: -30px;
+  width: 30px;
+  height: 45px;
+  color: var(--light-color);
+  animation: fadeout 0.1s linear;
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout-down {
+  from {
+    opacity: 1;
+    margin-top: -5px;
+  }
+  to {
+    opacity: 0;
+    margin-top: 100px;
+  }
+}

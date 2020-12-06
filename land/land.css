@@ -1,0 +1,10 @@
+.land {
+  position: absolute;
+  border: currentColor 4px solid;
+  height: 100px;
+  filter: var(--drop-shadow);
+}
+
+.land.empty {
+  display: none;
+}
