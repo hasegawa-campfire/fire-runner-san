@@ -54,11 +54,11 @@ export function update() {
         $replayName.textContent = getResult().name || defaultName
         $replayScoreValue.textContent = toDelimited(getResult().score)
         $launchReplay.dataset.bottom = 'PRESS ANY BUTTON'
-        $replayLoading.classList.remove('show')
       } else {
         $replayError.classList.add('show')
         $launchReplay.dataset.bottom = 'ERROR'
       }
+      $replayLoading.classList.remove('show')
       isShownReplay = true
     }
   }
